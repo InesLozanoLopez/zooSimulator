@@ -12,7 +12,7 @@ const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
     const handledTime = () => {
         const updateGiraffesHealth = giraffes.map((giraffe) => {
             const giraffeHealth = giraffe.health
-            if (giraffeHealth > 30) {
+            if (giraffeHealth >= 30) {
                 const decrease = Math.floor(Math.random() * 21);
                 giraffe.health = Number(giraffeHealth) - decrease;
             }
@@ -24,9 +24,29 @@ const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
         SetGiraffesAlive(aliveCount);
     }
 
+    const handledFood = () => {
+        const increase = Math.floor(Math.random() * 16) + 10;
+
+        const updateGiraffesHealth = giraffes.map((giraffe) => {
+            const giraffeHealth = giraffe.health
+            if (giraffeHealth >= 30) {
+                giraffe.health = Number(giraffeHealth) + increase;
+                if (giraffe.health >= 100) {
+                    giraffe.health = 100;
+                }
+            }
+            return giraffe;
+
+        })
+        SetGiraffes(updateGiraffesHealth);
+    }
+
+    console.log(giraffes)
+
     return (
         <>
             <button type='submit' onClick={handledTime}>Add 1h</button>
+            <button type='submit' onClick={handledFood}>Food</button>
             {giraffesAlive}
         </>
     )
