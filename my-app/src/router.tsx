@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import NewZoo from './components/newZoo';
+import NewZoo from './components/NewZoo';
 import Zoo from './components/Zoo';
 
 const AppRouter = () => {
