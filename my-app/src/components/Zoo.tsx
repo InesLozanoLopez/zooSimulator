@@ -1,5 +1,5 @@
 import { IAnimal, INewZoo } from '../interfaces';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
 import { useEffect, useState } from 'react';
 import { decreaseHealth, increaseHealth } from '../functions';
@@ -9,6 +9,7 @@ const Zoo: React.FC = () => {
 
   const location = useLocation();
   const newZoo: INewZoo = location.state?.newZoo;
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -22,8 +23,9 @@ const Zoo: React.FC = () => {
   const handledFood = () => {
     SetAnimals(increaseHealth(animals));
   }
-
-  console.log('animals', animals)
+  const handledNewZoo = () => {
+    navigate('/')
+  }
 
   return (
     <>
@@ -43,6 +45,8 @@ const Zoo: React.FC = () => {
 
         <Animals animals={newZoo.animals.filter((animal) => animal.type === 'monkey')} />
       </div>
+
+      <button type='submit' onClick={handledNewZoo}>New Zoo</button>
 
 
     </>
