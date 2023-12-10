@@ -1,5 +1,9 @@
 export interface IAnimal {
     type: string,
-    number: number,
     health: number,
+}
+
+export interface INewZoo {
+    zooName: string,
+    animals: IAnimal[],
 }
