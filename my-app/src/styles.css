@@ -1,0 +1,80 @@
+:root {
+    --lightBrown: #D6A577;
+    --darkBrown: #5B3B28;
+    --orange: #BD7657;
+    --sandColor: #BAAE99;
+
+}
+html, body {
+    width: auto;
+    height: auto;
+    background-color: var(--lightBrown);
+
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 4vh 4vw;
+    border: 0.25vw solid var(--darkBrown);
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  /* New Zoo */
+
+  #newZoo {
+    height: calc(100vh - 8vh);
+    display: flex;
+    background-image: url('./../public/animalsBanner.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .newZoo-form input{
+    text-align: center;
+    border: none;
+    border-bottom: 0.25vw solid var(--darkBrown);
+    background-color: transparent;
+    outline: none;
+    font-size: 4vw;
+    padding-left: 20px;
+    color: var(--darkBrown);
+  }
+  .newZoo-form input::placeholder {
+    color: var(--orange);
+  }
+
+  .newZoo-form button {
+    margin: 4vw;
+    padding: 2vw 3vw;
+    color: var(--darkBrown);
+    font-size: 2vw;
+    background-color: var(--sandColor);
+    border: 0.25vw solid var(--darkBrown);
+    border-radius: 60%;
+
+  }
+
+  /* Animals */
+.animalIcons-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.animalIcons{
+    max-width: 50px;
+    width: 20%;
+    aspect-ratio: 1/1;
+    height: auto;
+}

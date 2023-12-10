@@ -1,4 +1,4 @@
-import './../App.css';
+import './../styles.css';
 import { INewZoo } from '../interfaces';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -53,13 +53,13 @@ function NewZoo() {
   }
 
   return (
-    <>
-      <form onClick={formik.handleSubmit}>
+    <section id='newZoo'>
+      <form className='newZoo-form' onClick={formik.handleSubmit}>
         <input
           type='text' id='zooName' placeholder='Zoo name...' value={formik.values.zooName} onChange={formik.handleChange}></input>
         <button type='submit'> New Zoo</button>
       </form>
-    </>
+    </section>
   );
 }
 

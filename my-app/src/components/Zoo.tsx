@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
 import { useEffect, useState } from 'react';
 import { decreaseHealth, increaseHealth } from '../functions';
+import './../styles.css';
 
 const Zoo: React.FC = () => {
   const [animals, SetAnimals] = useState<IAnimal[]>([]);
