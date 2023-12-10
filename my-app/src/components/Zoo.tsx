@@ -15,7 +15,7 @@ const Zoo: React.FC = () => {
 
   useEffect(() => {
     return SetAnimals(newZoo.animals);
-}, []);
+  }, []);
 
 
   const handledTime = () => {
@@ -29,28 +29,36 @@ const Zoo: React.FC = () => {
   }
 
   return (
-    <>
-      <h1>Welcome to {newZoo.zooName}!</h1>
-
-      <button type='submit' onClick={handledTime}>Add 1h</button>
-      <button type='submit' onClick={handledFood}>Food</button>
-
-      <div>
-        <Animals animals={newZoo.animals.filter((animal) => animal.type === 'giraffe')} />
-      </div>
-      <div>
-
-        <Animals animals={newZoo.animals.filter((animal) => animal.type === 'elephant')} />
-      </div>
-      <div>
-
-        <Animals animals={newZoo.animals.filter((animal) => animal.type === 'monkey')} />
+    <section id="zoo">
+      <h1 className='zoo-welcome'>Welcome to {newZoo.zooName}!</h1>
+      <div className='zoo-buttons'>
+        <img
+          onClick={handledTime}
+          className='zoo-buttons-icon'
+          src='./timeIcon.png'
+          alt='Time Icon' />
+        <img
+          onClick={handledFood}
+          className='zoo-buttons-icon'
+          src='./foodIcon.png'
+          alt='Food Icon' />
       </div>
 
-      <button type='submit' onClick={handledNewZoo}>New Zoo</button>
+      <div className='zoo-animals-grid'>
+        <div className='zoo-animals-grid-cage cage-a'>
+          <Animals animals={newZoo.animals.filter((animal) => animal.type === 'giraffe')} />
+        </div>
+        <div className='zoo-animals-grid-cage cage-b'>
+          <Animals animals={newZoo.animals.filter((animal) => animal.type === 'elephant')} />
+        </div>
+        <div className='zoo-animals-grid-cage cage-c'>
+          <Animals animals={newZoo.animals.filter((animal) => animal.type === 'monkey')} />
+        </div>
+      </div>
 
+      <button className='newZoo-button' type='submit' onClick={handledNewZoo}>New Zoo</button>
 
-    </>
+    </section>
   );
 }
 

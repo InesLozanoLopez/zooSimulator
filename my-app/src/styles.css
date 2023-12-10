@@ -5,31 +5,44 @@
     --sandColor: #BAAE99;
 
 }
-html, body {
-    width: auto;
-    height: auto;
-    background-color: var(--lightBrown);
 
-  }
-  
-  body {
+html,
+body {
+    height: fit-content;
+    width: auto;
+    background-color: var(--lightBrown);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 4vh 4vw;
-    border: 0.25vw solid var(--darkBrown);
-  }
-  
-  code {
+    border: 0.5vw groove var(--darkBrown);
+}
+
+code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
+        monospace;
+}
 
-  /* New Zoo */
+button {
+    margin: 4vw;
+    padding: 2vw 3vw;
+    color: var(--darkBrown);
+    font-size: 4vw;
+    border: 0.25vw solid var(--darkBrown);
+    border-radius: 60%;
+}
 
-  #newZoo {
+/* New Zoo */
+
+#newZoo {
     height: calc(100vh - 8vh);
     display: flex;
     background-image: url('./../public/animalsBanner.png');
@@ -39,9 +52,9 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .newZoo-form input{
+.newZoo-form input {
     text-align: center;
     border: none;
     border-bottom: 0.25vw solid var(--darkBrown);
@@ -50,31 +63,90 @@ html, body {
     font-size: 4vw;
     padding-left: 20px;
     color: var(--darkBrown);
-  }
-  .newZoo-form input::placeholder {
-    color: var(--orange);
-  }
-
-  .newZoo-form button {
-    margin: 4vw;
-    padding: 2vw 3vw;
-    color: var(--darkBrown);
-    font-size: 2vw;
-    background-color: var(--sandColor);
-    border: 0.25vw solid var(--darkBrown);
-    border-radius: 60%;
-
-  }
-
-  /* Animals */
-.animalIcons-container {
-    display: flex;
-    flex-direction: row;
 }
 
-.animalIcons{
-    max-width: 50px;
-    width: 20%;
-    aspect-ratio: 1/1;
+.newZoo-form input::placeholder {
+    color: var(--orange);
+}
+
+.newZoo-form button {
+    background-color: var(--sandColor);
+}
+
+/* Zoo */
+#zoo {
+    height: calc(100vh - 8vh);
+
+}
+
+.zoo-welcome {
+    text-align: center;
+}
+
+.zoo-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3vw;
+    padding-right: 7vw;
+
+}
+
+.zoo-buttons-icon {
+    width: 3vw;
+    max-width: 100px;
+    min-width: 50px;
     height: auto;
+    padding: 1vw;
+    border-radius: 50%;
+    border: 0.25vw solid var(--darkBrown);
+}
+
+.zoo-animals-grid {
+    display: grid;
+    grid-row: repeat(3, 1fr);
+}
+
+.zoo-animals-grid-cage {
+    min-width: 30vw;
+    width: 50%;
+    min-height: 20vh;
+    height: fit-content;
+    margin: 10px;
+    border: 2px dashed var(--darkBrown);
+}
+
+.cage-a {
+    justify-self: self-start;
+}
+
+.cage-b {
+    justify-self: center;
+}
+
+.cage-c {
+    justify-self: self-end;
+}
+
+.newZoo-button {
+    background-color: var(--orange);
+}
+
+/* Animals */
+.animalIcons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    grid-auto-rows: minmax(50px, 1fr);
+    grid-auto-flow: dense;
+    padding: 1vw;
+    gap: 2vw;
+}
+
+.animalIcons {
+    max-width: 50px;
+    min-width: 50px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    padding: 1vw;
+
 }

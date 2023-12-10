@@ -40,13 +40,13 @@ function NewZoo() {
     };
 
     const typeOfAnimals: string[] = ['giraffe', 'monkey', 'elephant'];
-    let numberOfAnimals = 5;
+    let numberOfAnimals = 1;
 
-    while (numberOfAnimals > 0) {
+    while (numberOfAnimals < 5) {
       for (let i = 0; i < 3; i++) {
         zoo.animals.push({ type: typeOfAnimals[i], health: 100 });
       }
-      numberOfAnimals--;
+      numberOfAnimals++;
     }
     return zoo;
 
