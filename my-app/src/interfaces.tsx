@@ -1,6 +1,5 @@
 export interface IAnimal {
     type: string,
-    id: number,
     health: number,
     condition: string,
     elephantPassCondition?: string,

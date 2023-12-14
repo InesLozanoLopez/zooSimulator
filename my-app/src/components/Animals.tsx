@@ -5,11 +5,15 @@ import './../styles.css';
 const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
     const [animalsAlive, SetAnimalsAlive]= useState<number>(5)
 
+    /* Update the client view when the animals change
+*/
     useEffect(() => {
         const aliveCount = animals.animals.filter((animal) => animal.condition !== 'death').length;
         SetAnimalsAlive(aliveCount);
     }, [animals]);
 
+    /* Generate as many animals icons as animals of that type are alive
+*/
     const animalIcons = (animalsAlive: number) => {
         const icons = [];
         for (let i =0; i<animalsAlive; i++){

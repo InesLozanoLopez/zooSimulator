@@ -1,37 +1,38 @@
 import './../styles.css';
 import { INewZoo } from '../interfaces';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { increasingId } from '../functions';
 
 function NewZoo() {
+  // Pattern to sanitize the input
   const pattern = /^[A-Za-z0-9]+$/;
   const navigate = useNavigate();
+
+  // Handle the form to introduce the new Zoo name
 
   const formik = useFormik({
     initialValues: {
       zooName: '',
     },
-    validationSchema: Yup.object({
-      zooName: Yup.string().required(
-        'Please name your Zoo'
-      ),
-    }),
 
     onSubmit: async (values) => {
-      if (!pattern.test(values.zooName)) {
-        toast.warning('Only letters and number allowed')
+      if (!values.zooName) {
+        toast.warning('Please, name your zoo')
+      }
+      else if (!pattern.test(values.zooName)) {
+        toast.error('Only letters and number allowed')
       } else {
         handleOpenZoo(values.zooName);
       }
     }
   })
 
+  // Handle the creation of a new Zoo which is trigger on submit and navigate automatically to newZoo component - add zoo values to location
+
   const handleOpenZoo = (zooName: string) => {
     const newZoo = generateNewZoo(zooName);
-    navigate('/zoo', { state: {newZoo: newZoo}})
+    navigate('/zoo', { state: { newZoo: newZoo } })
   }
 
   const generateNewZoo = (zooName: string) => {
@@ -45,9 +46,8 @@ function NewZoo() {
     let numberOfAnimals = 0;
 
     while (numberOfAnimals < 5) {
-      
       for (let i = 0; i < 3; i++) {
-        zoo.animals.push({ type: typeOfAnimals[i], health: 100, condition: 'health', id: increasingId()});
+        zoo.animals.push({ type: typeOfAnimals[i], health: 100, condition: 'healthy'});
       }
       numberOfAnimals++;
     }

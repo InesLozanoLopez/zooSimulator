@@ -3,22 +3,27 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
 import AnimalsHealthInfo from './AnimalsHealthInfo';
 import { useEffect, useState } from 'react';
-import { decreaseHealth, increaseHealth, updateAnimalsCondition } from '../functions';
+import { decreaseHealth, increaseAnimalsHealth, updateAnimalsCondition } from '../functions';
 import './../styles.css';
+import { toast } from 'react-toastify';
 
 const Zoo: React.FC = () => {
   const [animals, SetAnimals] = useState<IAnimal[]>([]);
   const [intervalId, SetIntervalId] = useState<NodeJS.Timeout | null>(null);
 
+  // use the location of the router to get the zoo name and animals
+
   const location = useLocation();
   const newZoo: INewZoo = location.state?.newZoo;
   const navigate = useNavigate();
 
+  // Update the client view when the page is renderise and start the interval for zoo.age to be updated every hour.
 
   useEffect(() => {
     SetAnimals(newZoo.animals);
     startInterval();
   }, []);
+
 
   const startInterval = () => {
     const intervalId = setInterval(() => {
@@ -27,64 +32,48 @@ const Zoo: React.FC = () => {
     SetIntervalId(intervalId);
   }
 
+/*Update animals' health when on hour is passed or when the handledTime icon is pressed.
+This function (handledTime) clear and create a new intervalID if there was already one.
+In addition, it should be set up the interval to 0, also decrease the health of animals, check if all animals are death and increase the zoo.age by 1
+*/
 
   const handledTime = () => {
+    toast.success('Your Zoo is 1h older');
     if (intervalId) {
       clearInterval(intervalId);
-      SetAnimals(decreaseHealth(animals));
-      startInterval();
-      newZoo.zooAge += 1;
     }
     SetAnimals(decreaseHealth(animals));
-    console.log('animalsFoodBeforeHealth', animals)
     SetAnimals(updateAnimalsCondition(animals));
-    console.log('animalsFoodAfterHealth', animals)
+    checkAllAnimalDead(animals);
+    startInterval();
+    newZoo.zooAge += 1;
 
   };
-
+/*Update animals' health when the food icon is pressed.
+*/
   const handledFood = () => {
-    const increaseGiraffeHealth = increaseHealth();
-    const increaseMonkeyHealth = increaseHealth();
-    const increaseElephantHealth = increaseHealth();
-
-    const updateAnimalsHealthFeeding = animals.map((animal) => {
-      if (animal.condition !== 'death') {
-        if (animal.type === 'giraffe') {
-          const newHealth = animal.health + increaseGiraffeHealth;
-          if (newHealth >= 100) {
-            animal.health = 100;
-          } else {
-            animal.health = newHealth;
-          }
-        }
-        else if (animal.type === 'monkey') {
-          const newHealth = animal.health + increaseMonkeyHealth;
-          if (newHealth >= 100) {
-            animal.health = 100;
-          } else {
-            animal.health = newHealth;
-          }
-        }
-        else if (animal.type === 'elephant') {
-          const newHealth = animal.health + increaseElephantHealth;
-          if (newHealth >= 100) {
-            animal.health = 100;
-          } else {
-            animal.health = newHealth;
-          }
-        }
-      }
-      return animal
-    })
-    SetAnimals(updateAnimalsCondition(updateAnimalsHealthFeeding))
+    toast.success('Your animals have been feed :)');
+    const feedingAnimals = increaseAnimalsHealth(animals);   
+    SetAnimals(updateAnimalsCondition(feedingAnimals));
+} 
+/* I created this function just to trigger a message when all animals are death
+*/
+const checkAllAnimalDead = (animals: IAnimal[]) => {
+  if (animals.every((animal) => animal.condition === 'death')) {
+      console.log(animals);
+      toast.error('You kill all your animals... Your zoo is closed!')
   };
+}
 
+/* Navegate to the main page (newZoo) to start the simulator again
+*/
   const handledNewZoo = () => {
     if (intervalId) {
       clearInterval(intervalId);
     }
     navigate('/')
   }
+
 
   return (
     <section id="zoo">
@@ -143,3 +132,4 @@ const Zoo: React.FC = () => {
 }
 
 export default Zoo;
+
