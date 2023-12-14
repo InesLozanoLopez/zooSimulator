@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
 import AnimalsHealthInfo from './AnimalsHealthInfo';
 import { useEffect, useState } from 'react';
-import { decreaseHealth, increaseHealth, updateAnimalsAlive } from '../functions';
+import { decreaseHealth, increaseHealth, updateAnimalsCondition } from '../functions';
 import './../styles.css';
 
 const Zoo: React.FC = () => {
@@ -36,7 +36,10 @@ const Zoo: React.FC = () => {
       newZoo.zooAge += 1;
     }
     SetAnimals(decreaseHealth(animals));
-    SetAnimals(updateAnimalsAlive(animals));
+    console.log('animalsFoodBeforeHealth', animals)
+    SetAnimals(updateAnimalsCondition(animals));
+    console.log('animalsFoodAfterHealth', animals)
+
   };
 
   const handledFood = () => {
@@ -45,7 +48,7 @@ const Zoo: React.FC = () => {
     const increaseElephantHealth = increaseHealth();
 
     const updateAnimalsHealthFeeding = animals.map((animal) => {
-      if (animal.alive === true) {
+      if (animal.condition !== 'death') {
         if (animal.type === 'giraffe') {
           const newHealth = animal.health + increaseGiraffeHealth;
           if (newHealth >= 100) {
@@ -73,7 +76,7 @@ const Zoo: React.FC = () => {
       }
       return animal
     })
-    SetAnimals(updateAnimalsHealthFeeding)
+    SetAnimals(updateAnimalsCondition(updateAnimalsHealthFeeding))
   };
 
   const handledNewZoo = () => {

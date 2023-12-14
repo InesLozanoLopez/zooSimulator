@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { increasingId } from '../functions';
 
 function NewZoo() {
   const pattern = /^[A-Za-z0-9]+$/;
@@ -44,8 +45,9 @@ function NewZoo() {
     let numberOfAnimals = 0;
 
     while (numberOfAnimals < 5) {
+      
       for (let i = 0; i < 3; i++) {
-        zoo.animals.push({ type: typeOfAnimals[i], health: 100, alive: true });
+        zoo.animals.push({ type: typeOfAnimals[i], health: 100, condition: 'health', id: increasingId()});
       }
       numberOfAnimals++;
     }

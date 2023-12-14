@@ -1,7 +1,9 @@
 export interface IAnimal {
     type: string,
+    id: number,
     health: number,
-    alive: boolean,
+    condition: string,
+    elephantPassCondition?: string,
 }
 
 export interface INewZoo {

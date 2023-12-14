@@ -14,19 +14,10 @@ const AnimalsHealthInfo: React.FC<{ animals: IAnimal[] }> = ({ animals }) => {
         const squares = [];
         for (let i = 0; i < animals.length; i++) {
             squares.push(
-                <FaSquareFull key={i} className={healthStatus(animals[i])} />
+                <FaSquareFull key={i} className={animals[i].condition} />
             )
         }
         return squares
-    }
-
-    const healthStatus = (animal:IAnimal): string => {
-        if (!animal.alive){
-            return 'death'
-        } else if (animal.type === 'elephant' && animal.health === 70){
-            return 'ill'
-        } 
-        return 'healthy'
     }
 
     return (
