@@ -36,7 +36,8 @@ function NewZoo() {
   const generateNewZoo = (zooName: string) => {
     const zoo: INewZoo = {
       zooName: zooName,
-      animals: []
+      animals: [],
+      zooAge: 0
     };
 
     const typeOfAnimals: string[] = ['giraffe', 'monkey', 'elephant'];
@@ -44,7 +45,7 @@ function NewZoo() {
 
     while (numberOfAnimals < 5) {
       for (let i = 0; i < 3; i++) {
-        zoo.animals.push({ type: typeOfAnimals[i], health: 100 });
+        zoo.animals.push({ type: typeOfAnimals[i], health: 100, alive: true });
       }
       numberOfAnimals++;
     }

@@ -2,7 +2,7 @@ import { IAnimal, INewZoo } from '../interfaces';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
 import { useEffect, useState } from 'react';
-import { decreaseHealth, increaseHealth } from '../functions';
+import { decreaseHealth, increaseHealth, updateAnimalsAlive } from '../functions';
 import './../styles.css';
 
 const Zoo: React.FC = () => {
@@ -17,7 +17,6 @@ const Zoo: React.FC = () => {
   useEffect(() => {
     SetAnimals(newZoo.animals);
     startInterval();
-
   }, []);
 
   const startInterval = () => {
@@ -33,8 +32,10 @@ const Zoo: React.FC = () => {
       clearInterval(intervalId);
       SetAnimals(decreaseHealth(animals));
       startInterval();
+      newZoo.zooAge += 1;
     }
     SetAnimals(decreaseHealth(animals));
+    SetAnimals(updateAnimalsAlive(animals));
   };
 
   const handledFood = () => {
@@ -43,28 +44,30 @@ const Zoo: React.FC = () => {
     const increaseElephantHealth = increaseHealth();
 
     const updateAnimalsHealthFeeding = animals.map((animal) => {
-      if (animal.type === 'giraffe' && animal.health >= 50) {
-        const newHealth = animal.health + increaseGiraffeHealth;
-        if (newHealth >= 100) {
-          animal.health = 100;
-        } else {
-          animal.health = newHealth;
+      if (animal.alive === true) {
+        if (animal.type === 'giraffe') {
+          const newHealth = animal.health + increaseGiraffeHealth;
+          if (newHealth >= 100) {
+            animal.health = 100;
+          } else {
+            animal.health = newHealth;
+          }
         }
-      }
-      else if (animal.type === 'monkey' && animal.health >= 30) {
-        const newHealth = animal.health + increaseMonkeyHealth;
-        if (newHealth >= 100) {
-          animal.health = 100;
-        } else {
-          animal.health = newHealth;
+        else if (animal.type === 'monkey') {
+          const newHealth = animal.health + increaseMonkeyHealth;
+          if (newHealth >= 100) {
+            animal.health = 100;
+          } else {
+            animal.health = newHealth;
+          }
         }
-      }
-      else if (animal.type === 'elephant' && animal.health >= 70) {
-        const newHealth = animal.health + increaseElephantHealth;
-        if (newHealth >= 100) {
-          animal.health = 100;
-        } else {
-          animal.health = newHealth;
+        else if (animal.type === 'elephant') {
+          const newHealth = animal.health + increaseElephantHealth;
+          if (newHealth >= 100) {
+            animal.health = 100;
+          } else {
+            animal.health = newHealth;
+          }
         }
       }
       return animal
@@ -82,6 +85,7 @@ const Zoo: React.FC = () => {
   return (
     <section id="zoo">
       <h1 className='zoo-welcome'>Welcome to {newZoo.zooName}!</h1>
+      <div className='zoo-age'>Zoo age: {newZoo.zooAge} {newZoo.zooAge > 1 ? 'hours' : 'hour'}</div>
       <div className='zoo-buttons'>
         <img
           onClick={handledTime}
@@ -107,8 +111,12 @@ const Zoo: React.FC = () => {
         </div>
       </div>
 
-      <button className='newZoo-button' type='submit' onClick={handledNewZoo}>New Zoo</button>
-
+      <div className='zoo-otherInfo'>
+        <div className='zoo-otherInfo-HealthInfoContainer'>
+          
+        </div>
+      <button className='zoo-otherInfo-button' type='submit' onClick={handledNewZoo}>New Zoo</button>
+      </div>
     </section>
   );
 }
