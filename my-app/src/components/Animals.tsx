@@ -12,7 +12,9 @@ const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
         SetAnimalsAlive(aliveCount);
     }, [animals]);
 
-    /* Generate as many animals icons as animals of that type are alive
+    /* Generate as many animals icons as animals of that type are alive. I could have adding a hidden tag, but I thought I could
+    show my skills in CSS better if the size of the grid was changing depend on how many animals were inside. Also I thought it looks better on
+    smaller screen. Especially if many animals were death and there were many space around.
 */
     const animalIcons = (animalsAlive: number) => {
         const icons = [];

@@ -39,6 +39,8 @@ In addition, it should be set up the interval to 0, also decrease the health of 
 
   const handledTime = () => {
     toast.success('Your Zoo is 1h older');
+    const currentDate = new Date();
+    console.log('currentDate', currentDate);
     if (intervalId) {
       clearInterval(intervalId);
     }
@@ -60,7 +62,6 @@ In addition, it should be set up the interval to 0, also decrease the health of 
 */
 const checkAllAnimalDead = (animals: IAnimal[]) => {
   if (animals.every((animal) => animal.condition === 'death')) {
-      console.log(animals);
       toast.error('You kill all your animals... Your zoo is closed!')
   };
 }

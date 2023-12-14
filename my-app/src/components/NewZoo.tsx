@@ -17,10 +17,7 @@ function NewZoo() {
     },
 
     onSubmit: async (values) => {
-      if (!values.zooName) {
-        toast.warning('Please, name your zoo')
-      }
-      else if (!pattern.test(values.zooName)) {
+      if (!pattern.test(values.zooName)) {
         toast.error('Only letters and number allowed')
       } else {
         handleOpenZoo(values.zooName);
