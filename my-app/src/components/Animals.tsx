@@ -6,7 +6,7 @@ const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
     const [animalsAlive, SetAnimalsAlive]= useState<number>(5)
 
     useEffect(() => {
-        const aliveCount = animals.animals.filter((animal) => animal.health >= 30).length;
+        const aliveCount = animals.animals.filter((animal) => animal.alive === true).length;
         SetAnimalsAlive(aliveCount);
     }, [animals]);
 

@@ -75,12 +75,19 @@ button {
 
 /* Zoo */
 #zoo {
-    height: calc(100vh - 8vh);
-
+    height: fit-content;
+    width: auto;
 }
 
 .zoo-welcome {
     text-align: center;
+    margin-bottom: 3vw;
+}
+
+.zoo-age {
+    padding: 3vw;
+    padding-top: 0;
+    text-align:end;
 }
 
 .zoo-buttons {
@@ -104,7 +111,8 @@ button {
 .zoo-animals-grid {
     display: grid;
     grid-row: repeat(3, 1fr);
-}
+    height: fit-content;
+width: auto;}
 
 .zoo-animals-grid-cage {
     min-width: 30vw;
@@ -127,9 +135,50 @@ button {
     justify-self: self-end;
 }
 
-.newZoo-button {
-    background-color: var(--orange);
+.zoo-otherInfo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 3vw;
+
 }
+.zoo-otherInfo-HealthInfo{
+    border: solid 0.5vw var(--darkBrown);
+}
+.zoo-otherInfo-HealthInfo-Container{
+    padding: 3vw;
+    border-bottom: solid 0.5vw var(--darkBrown);
+    display: flex;
+    flex-direction: column;
+}
+.zoo-otherInfo-HealthInfo-Container-animalsHealth{
+    display: flex;
+    align-self: center;
+    gap: 3vw;
+    padding-top: 2vw;
+}
+.zoo-otherInfo-button {
+    background-color: var(--orange);
+    align-self: center;
+    padding: 3vw;
+    height: min-content;
+    width:  auto;
+}
+
+.death {
+    color: red;
+    border: solid 1vw var(--darkBrown);
+}
+.ill {
+    color: orange;
+    border: solid 1vw var(--darkBrown);
+
+}
+.healthy {
+    color: green;
+    border: solid 1vw var(--darkBrown);
+
+}
+
 
 /* Animals */
 .animalIcons-container {

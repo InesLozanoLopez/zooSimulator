@@ -1,6 +1,7 @@
 import { IAnimal, INewZoo } from '../interfaces';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
+import AnimalsHealthInfo from './AnimalsHealthInfo';
 import { useEffect, useState } from 'react';
 import { decreaseHealth, increaseHealth, updateAnimalsAlive } from '../functions';
 import './../styles.css';
@@ -112,12 +113,29 @@ const Zoo: React.FC = () => {
       </div>
 
       <div className='zoo-otherInfo'>
-        <div className='zoo-otherInfo-HealthInfoContainer'>
-          
+        <div className='zoo-otherInfo-HealthInfo'>
+          <div className='zoo-otherInfo-HealthInfo-Container'>
+            <div className='zoo-otherInfo-HealthInfo-Container-AnimalType'>Giraffes' Health:</div>
+            <div className='zoo-otherInfo-HealthInfo-Container-animalsHealth'>
+            <AnimalsHealthInfo animals={newZoo.animals.filter((animal) => animal.type === 'giraffe')}/>
+            </div>
+          </div>
+          <div className='zoo-otherInfo-HealthInfo-Container'>
+            <div className='zoo-otherInfo-HealthInfo-Container-AnimalType'>Monkeys' Health:</div>
+            <div className='zoo-otherInfo-HealthInfo-Container-animalsHealth'>
+              <AnimalsHealthInfo animals={newZoo.animals.filter((animal) => animal.type === 'monkey')}/>
+            </div>
+          </div>
+          <div className='zoo-otherInfo-HealthInfo-Container'>
+            <div className='zoo-otherInfo-HealthInfo-Container-AnimalType'>Elephants' Health:</div>
+            <div className='zoo-otherInfo-HealthInfo-Container-animalsHealth'>
+            <AnimalsHealthInfo animals={newZoo.animals.filter((animal) => animal.type === 'elephant')}/>
+            </div>
+          </div>
         </div>
-      <button className='zoo-otherInfo-button' type='submit' onClick={handledNewZoo}>New Zoo</button>
-      </div>
-    </section>
+          <button className='zoo-otherInfo-button' type='submit' onClick={handledNewZoo}>New Zoo</button>
+        </div>
+    </section >
   );
 }
 
