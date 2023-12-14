@@ -12,7 +12,7 @@ const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
 
     const animalIcons = (animalsAlive: number) => {
         const icons = [];
-        for (let i =0; i<=animalsAlive; i++){
+        for (let i =0; i<animalsAlive; i++){
         icons.push(
         <img
         className="animalIcons"

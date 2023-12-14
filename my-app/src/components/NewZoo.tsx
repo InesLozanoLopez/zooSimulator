@@ -40,7 +40,7 @@ function NewZoo() {
     };
 
     const typeOfAnimals: string[] = ['giraffe', 'monkey', 'elephant'];
-    let numberOfAnimals = 1;
+    let numberOfAnimals = 0;
 
     while (numberOfAnimals < 5) {
       for (let i = 0; i < 3; i++) {
