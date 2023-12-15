@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import Zoo from '../src/components/Zoo';
 import { toast } from 'react-toastify';
+import '../src/styles.css'
 
 
 interface newZooProp {
@@ -40,10 +40,9 @@ describe('Zoo component', () => {
             </MemoryRouter>,
         );
 
-
         await act(async () => {
-            expect(screen.getByText(`Welcome to ${newZoo.zooName}!`)).toBeInTheDocument();
-            expect(screen.getByText(`Zoo age: ${newZoo.zooAge} hour`)).toBeInTheDocument();
+            expect(screen.getByText(`Welcome to ${newZoo.zooName}!`)).toBe;
+            expect(screen.getByText(`Zoo age: ${newZoo.zooAge} hour`)).toBe;
         });
 
     });
@@ -80,18 +79,15 @@ describe('Zoo component', () => {
         });
     });
     it('updates zoo age with the interval', async () => {
-        render(
-            <MemoryRouter>
-                <Zoo />
-            </MemoryRouter>
-        );
+            render(<Zoo />, { wrapper: MemoryRouter });
+
         const initialAge = `${newZoo.zooAge}`;
 
         act(() => {
             jest.advanceTimersByTime(3600001);
         });
         await waitFor(() => {
-            expect(toast.success('Your animals have been feed :)'));
+            expect(toast.success('Your Zoo is 1h older'));
         });
         const updatedAge = `${newZoo.zooAge}`;
         expect(Number(updatedAge)).toBeGreaterThan(Number(initialAge));

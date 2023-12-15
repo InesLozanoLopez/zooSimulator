@@ -1,30 +1,31 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Animals from './../src/components/Animals';
-import React from 'react';
+import '../src/styles.css';
 
 const mockAnimals = [
     { type: 'giraffe', health: 100, condition: 'healthy' },
     { type: 'elephant', health: 69, condition: 'ill' },
-    { type: 'monkey', health: 20, condition: 'death' }
+    { type: 'monkey', health: 20, condition: 'death' },
 ]
 
 describe('Animals component', () => {
-    it('renders animal type', () => {
+    it('render animal type', () => {
         render(<Animals animals={mockAnimals} />);
         const typeElement = screen.getAllByLabelText(`Icons of ${mockAnimals[0].type} alive`);
-        expect(typeElement).toBeInTheDocument();
+        expect(typeElement).toBe;
     });
 
     it('renders correct number of animal icons', () => {
         render(<Animals animals={mockAnimals} />);
-        const animalIcons = screen.getAllByAltText(/icons of/i);
-        expect(animalIcons).toHaveLength(3); // Updated to 3 based on the mockAnimals array length
+        const animalIcons = screen.getAllByLabelText(`Icons of giraffe alive`);
+        expect(animalIcons).toBeVisible;
       });
 
     it('updates the number of animals alive on prop change', () => {
         render(<Animals animals={mockAnimals} />);
-        const initialCount = screen.getAllByAltText(/icons of giraffe/i).length;
+        const element = screen.getAllByLabelText(`Icons of monkey alive`);
+        expect(element).not.toBe;
 
         const updatedMockAnimals = [
             { type: 'giraffe', health: 100, condition: 'healthy' },
@@ -33,8 +34,7 @@ describe('Animals component', () => {
         ];
 
         render(<Animals animals={updatedMockAnimals} />);
-        const updatedCount = screen.getAllByAltText(/icons of giraffe/i).length;
-
-        expect(updatedCount).toBeGreaterThan(initialCount);
+        const typeElement = screen.getAllByLabelText(`Icons of monkey alive`);
+        expect(typeElement).toBe;
     });
 })

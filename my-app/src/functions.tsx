@@ -79,7 +79,8 @@ If the elephant should be ill (previous condition was healthy) or death (previou
 export const updateAnimalsCondition = (animals: IAnimal[]) => {
   let noNewDeath = true;
 
-  const updateAlive = animals.map((animal) => {
+  const updateAlive = animals
+  .filter((animal) => animal.condition !== 'death').map((animal) => {
     if (animal.type === 'giraffe') {
       if (animal.health < 50) {
         animal.condition = 'death';
@@ -89,10 +90,10 @@ export const updateAnimalsCondition = (animals: IAnimal[]) => {
       }
     }
     else if (animal.type === 'monkey') {
+      console.log(animal.health);
       if (animal.health < 30) {
         animal.condition = 'death';
         noNewDeath = false;
-
       } else {
         animal.condition = 'healthy'
       }
@@ -111,9 +112,15 @@ export const updateAnimalsCondition = (animals: IAnimal[]) => {
       }
     }
     return animal
-  })
+})
   if (!noNewDeath) {
     toast.error('Oh no, one of your animals passed away')
   }
   return updateAlive;
+}
+
+// To capitalise first letter
+
+export const capitaliseFirstLetter = (str : string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1)
 }

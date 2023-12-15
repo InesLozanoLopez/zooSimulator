@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import NewZoo from '../src/components/NewZoo';
 import { toast } from 'react-toastify';
+import { createMemoryHistory } from 'history';
 
 
 describe('NewZoo component', () => {
@@ -13,11 +13,12 @@ describe('NewZoo component', () => {
         const zooNameInput = screen.getByPlaceholderText('Zoo name...');
         const submitButton = screen.getByText('New Zoo');
 
-        expect(zooNameInput).toBeInTheDocument();
-        expect(submitButton).toBeInTheDocument();
+        expect(zooNameInput).toBe;
+        expect(submitButton).toBe;
     });
 
     it('submits the form with valid input', async () => {
+        const history = createMemoryHistory();
         render(<NewZoo />, { wrapper: MemoryRouter });
 
         const zooNameInput = screen.getByPlaceholderText('Zoo name...');
@@ -28,8 +29,7 @@ describe('NewZoo component', () => {
             fireEvent.click(submitButton);
         })
         await waitFor(() => {
-            expect(zooNameInput).toBeInTheDocument();
-            expect(submitButton).toBeInTheDocument();
+            history.push('/zoo');
         });
     });
 

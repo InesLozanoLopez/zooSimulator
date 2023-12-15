@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AnimalsHealthInfo from './../src/components/AnimalsHealthInfo';
-import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
 
 const mockAnimals = [
     { type: 'giraffe', health: 100, condition: 'healthy' },

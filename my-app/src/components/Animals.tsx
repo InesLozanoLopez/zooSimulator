@@ -1,41 +1,38 @@
-import { useEffect, useState } from "react";
 import { IAnimal } from "../interfaces"
 import './../styles.css';
+import { capitaliseFirstLetter } from "../functions";
 
-const Animals: React.FC<{ animals: IAnimal[] }> = (animals) => {
-    const [animalsAlive, SetAnimalsAlive]= useState<number>(5)
+const Animals: React.FC<{ animals: IAnimal[] }> = ({ animals }) => {
 
-    /* Update the client view when the animals change
-*/
-    useEffect(() => {
-        const aliveCount = animals.animals.filter((animal) => animal.condition !== 'death').length;
-        SetAnimalsAlive(aliveCount);
-    }, [animals]);
 
-    /* Generate as many animals icons as animals of that type are alive. I could have adding a hidden tag, but I thought I could
-    show my skills in CSS better if the size of the grid was changing depend on how many animals were inside. Also I thought it looks better on
-    smaller screen. Especially if many animals were death and there were many space around.
-*/
-    const animalIcons = (animalsAlive: number) => {
+    /* Add a death className to the icons which animals are death*/
+    
+    const animalIcons = () => {
         const icons = [];
-        for (let i =0; i<animalsAlive; i++){
-        icons.push(
-        <img
-        className="animalIcons"
-        key={i}
-        src={`./${animals.animals[0].type}.png`}
-        alt ={`icons of ${animals.animals[0].type}s`}
-        />
-        )}
+        for (let i = 0; i < animals.length; i++) {
+            icons.push(
+                <img
+                    aria-label={`Icons of ${animals[i].type} alive`}
+                    className={`animalIcons ${animals[i].condition === 'death' ? 'hiddenIcon' : ''}`}
+                    key={i}
+                    src={`./${animals[i].type}.png`}
+                    alt={`icons of ${animals[i].type}s`}
+                />
+            )
+        }
         return icons
     }
-   
+
     return (
         <>
-        {animals.animals[0].type}
-        <div className='animalIcons-container'>
-            {animalIcons(animalsAlive)}
-        </div>
+            <div className="animalsCage">
+                <div className="animalsCage-name">
+                    <h2>{capitaliseFirstLetter(animals[0].type)}s</h2>
+                </div>
+                <div className='animalsCage-IconsContainer'>
+                    {animalIcons()}
+                </div>
+            </div>
         </>
     )
 }

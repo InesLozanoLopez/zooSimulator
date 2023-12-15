@@ -8,7 +8,7 @@ const AnimalsHealthInfo: React.FC<{ animals: IAnimal[] }> = ({ animals }) => {
     /* Update the animals display according to the animal.condition
 */
     useEffect(() => {
-        animalHealthDisplay(animals);        
+        animalHealthDisplay(animals);
     }, [animals])
 
 
@@ -18,7 +18,7 @@ const AnimalsHealthInfo: React.FC<{ animals: IAnimal[] }> = ({ animals }) => {
         const squares = [];
         for (let i = 0; i < animals.length; i++) {
             squares.push(
-                <FaSquareFull key={i} className={animals[i].condition} />
+                <FaSquareFull key={i} aria-label={`The health of this animal is ${animals[i].condition}`} className={animals[i].condition} />
             )
         }
         return squares

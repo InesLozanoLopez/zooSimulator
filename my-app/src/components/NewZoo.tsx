@@ -15,7 +15,6 @@ function NewZoo() {
     initialValues: {
       zooName: '',
     },
-
     onSubmit: async (values) => {
       if (!pattern.test(values.zooName)) {
         toast.error('Only letters and number allowed')
@@ -54,10 +53,10 @@ function NewZoo() {
 
   return (
     <section id='newZoo'>
-      <form className='newZoo-form' onClick={formik.handleSubmit}>
+      <form className='newZoo-form' onSubmit={formik.handleSubmit}>
         <input
-          type='text' id='zooName' placeholder='Zoo name...' value={formik.values.zooName} onChange={formik.handleChange}></input>
-        <button type='submit'> New Zoo</button>
+          type='text' aria-label='Name your new zoo' id='zooName' placeholder='Zoo name...' value={formik.values.zooName} onChange={formik.handleChange}></input>
+        <button type='submit' aria-label='Create new zoo'> New Zoo</button>
       </form>
     </section>
   );
