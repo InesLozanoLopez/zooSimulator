@@ -58,11 +58,10 @@ button {
     text-align: center;
     border: none;
     border-bottom: 0.25vw solid var(--darkBrown);
-    background-color: transparent;
+    background: transparent;
     outline: none;
     font-size: 4vw;
     padding-left: 20px;
-    color: var(--darkBrown);
 }
 
 .newZoo-form input::placeholder {
@@ -87,7 +86,7 @@ button {
 .zoo-age {
     padding: 3vw;
     padding-top: 0;
-    text-align:end;
+    text-align: end;
 }
 
 .zoo-buttons {
@@ -112,7 +111,8 @@ button {
     display: grid;
     grid-row: repeat(3, 1fr);
     height: fit-content;
-width: auto;}
+    width: auto;
+}
 
 .zoo-animals-grid-cage {
     min-width: 30vw;
@@ -141,38 +141,44 @@ width: auto;}
     padding-top: 3vw;
 
 }
-.zoo-otherInfo-HealthInfo{
+
+.zoo-otherInfo-HealthInfo {
     border: solid 0.5vw var(--darkBrown);
 }
-.zoo-otherInfo-HealthInfo-Container{
+
+.zoo-otherInfo-HealthInfo-Container {
     padding: 3vw;
     border-bottom: solid 0.5vw var(--darkBrown);
     display: flex;
     flex-direction: column;
 }
-.zoo-otherInfo-HealthInfo-Container-animalsHealth{
+
+.zoo-otherInfo-HealthInfo-Container-animalsHealth {
     display: flex;
     align-self: center;
     gap: 3vw;
     padding-top: 2vw;
 }
+
 .zoo-otherInfo-button {
     background-color: var(--orange);
     align-self: center;
     padding: 3vw;
     height: min-content;
-    width:  auto;
+    width: auto;
 }
 
 .death {
     color: red;
     border: solid 1vw var(--darkBrown);
 }
+
 .ill {
     color: orange;
     border: solid 1vw var(--darkBrown);
 
 }
+
 .healthy {
     color: green;
     border: solid 1vw var(--darkBrown);
@@ -181,10 +187,11 @@ width: auto;}
 
 
 /* Animals */
-.animalsCage{
+.animalsCage {
     display: grid;
     grid-template-rows: repeat(2, auto);
 }
+
 .animalsCage-name {
     justify-self: center;
 }
@@ -208,6 +215,96 @@ width: auto;}
 
 }
 
-.animalIcons.hiddenIcon{
-    visibility: hidden;
+.animalIcons.hiddenIcon {
+    visibility: visible;
+    animation: vibrate 3s linear 0.02s forwards, turn 1s ease-in 2s forwards, fall 1s ease-out 3s forwards;
+    filter: grayscale(100%)
+}
+
+@keyframes vibrate {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-10px, 25px);
+        filter: grayscale(10%);
+    }
+
+    20% {
+        transform: translate(5px, -5px);
+        filter: grayscale(20%);
+    }
+
+    30% {
+        transform: translate(5px, 10px);
+        filter: grayscale(30%);
+    }
+
+    40% {
+        transform: translate(-5px, -5px);
+        filter: grayscale(40%);
+    }
+
+    50% {
+        transform: translate(-5px, 5px);
+        filter: grayscale(50%);
+    }
+
+    60% {
+        transform: translate(10px, 5px);
+        filter: grayscale(60%);
+    }
+
+    70% {
+        transform: translate(25px, -5px);
+        filter: grayscale(70%);
+    }
+
+    80% {
+        transform: translate(5px, 5px);
+        filter: grayscale(80%);
+    }
+
+    90% {
+        transform: translate(-5px, -20px);
+        filter: grayscale(90%);
+    }
+
+    100% {
+        transform: translate(0, 0);
+        filter: grayscale(100%);
+    }
+}
+
+@keyframes turn {
+    0% {
+        transform: rotate(0);
+        filter: grayscale(100%);
+    }
+
+    50% {
+        transform: rotate(60deg);
+        filter: grayscale(100%);
+    }
+
+    100% {
+        transform: rotate(180deg);
+        filter: grayscale(100%);
+    }
+
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+        transform: rotate(180deg);
+        filter: grayscale(100%);
+    }
+
+    100% {
+        transform: translateY(150vh);
+        filter: grayscale(100%);
+        visibility: hidden;
+    }
 }
