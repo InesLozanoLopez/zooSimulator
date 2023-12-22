@@ -11,8 +11,7 @@ interface newZooProp {
     zooAge: number;
     animals: Array<
         { type: string; health: number; condition: string }>
-};
-
+}
 
 const newZoo: newZooProp = {
     zooName: 'Test Zoo',

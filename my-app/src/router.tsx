@@ -3,13 +3,12 @@ import NewZoo from './components/NewZoo';
 import Zoo from './components/Zoo';
 
 const AppRouter = () => {
-
-    return (
-        <Routes>
-            <Route path='/' element={<NewZoo />} />
-            <Route path='/zoo' element={<Zoo />} />
-        </Routes>
-    )
-}
+  return (
+    <Routes>
+      <Route path="/" element={<NewZoo />} />
+      <Route path="/zoo" element={<Zoo />} />
+    </Routes>
+  );
+};
 
 export default AppRouter;

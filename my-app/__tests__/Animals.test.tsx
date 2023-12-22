@@ -20,7 +20,7 @@ describe('Animals component', () => {
         render(<Animals animals={mockAnimals} />);
         const animalIcons = screen.getAllByLabelText(`Icons of giraffe alive`);
         expect(animalIcons).toBeVisible;
-      });
+    });
 
     it('updates the number of animals alive on prop change', () => {
         render(<Animals animals={mockAnimals} />);

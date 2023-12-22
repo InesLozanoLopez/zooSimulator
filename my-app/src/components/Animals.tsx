@@ -1,12 +1,13 @@
-import { IAnimal } from "../interfaces"
+import { IAnimal } from "../interfaces";
 import './../styles.css';
 import { capitaliseFirstLetter } from "../functions";
 
-const Animals: React.FC<{ animals: IAnimal[] }> = ({ animals }) => {
+interface AnimalsProps {
+  animals: IAnimal[];
+}
 
-
-    /* Add a death className to the icons which animals are death*/
-    
+const Animals: React.FC<AnimalsProps> = ({ animals }) => {
+  
     const animalIcons = () => {
         const icons = [];
         for (let i = 0; i < animals.length; i++) {

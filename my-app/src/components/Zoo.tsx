@@ -3,7 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Animals from './Animals';
 import AnimalsHealthInfo from './AnimalsHealthInfo';
 import { useEffect, useState } from 'react';
-import { decreaseHealth, increaseAnimalsHealth, updateAnimalsCondition } from '../functions';
+import {
+  decreaseHealth,
+  increaseAnimalsHealth,
+  updateAnimalsCondition,
+} from '../functions';
 import './../styles.css';
 import { toast } from 'react-toastify';
 
@@ -17,19 +21,18 @@ const Zoo: React.FC = () => {
 
   useEffect(() => {
     if (!newZoo) {
-      navigate('/')
+      navigate('/');
     }
     SetAnimals(newZoo?.animals);
     startInterval();
   }, []);
 
-
   const startInterval = () => {
     const intervalId = setInterval(() => {
       handledTime();
-    }, 3600000)
+    }, 3600000);
     SetIntervalId(intervalId);
-  }
+  };
 
   const handledTime = () => {
     toast.success('Your Zoo is 1h older');
@@ -48,15 +51,14 @@ const Zoo: React.FC = () => {
     const feedingAnimals = increaseAnimalsHealth(animals);
     SetAnimals(updateAnimalsCondition(feedingAnimals));
     leavesRaining();
-  }
+  };
 
   const checkAllAnimalDead = (animals: IAnimal[]) => {
     if (animals.every((animal) => animal.condition === 'death')) {
-      toast.error('You kill all your animals... Your zoo is closed!')
-    };
-  }
+      toast.error('You kill all your animals... Your zoo is closed!');
+    }
+  };
 
-  
   const leavesRaining = () => {
     const numberOfLeaves = 30;
     for (let i = 0; i < numberOfLeaves; i++) {
@@ -66,85 +68,124 @@ const Zoo: React.FC = () => {
       leavesIcon.setAttribute('aria-label', 'Leaves rain');
       leavesIcon.className = 'fallingLeaves';
 
-      leavesIcon.style.left = `${Math.random() * 100}vw`
+      leavesIcon.style.left = `${Math.random() * 100}vw`;
       leavesIcon.style.animationDelay = `${Math.random()}s`;
 
       document.body.appendChild(leavesIcon);
 
       setTimeout(() => {
         document.body.removeChild(leavesIcon);
-      }, 5000)
+      }, 5000);
     }
-  }
+  };
 
   const handledNewZoo = () => {
     if (intervalId) {
       clearInterval(intervalId);
     }
-    navigate('/')
-  }
+    navigate('/');
+  };
 
   return (
     <section id="zoo">
       {newZoo && (
         <>
-          <h1 className='zoo-welcome'>Welcome to {newZoo.zooName}!</h1>
-          <div className='zoo-age'>Zoo age: {newZoo.zooAge} {newZoo.zooAge > 1 ? 'hours' : 'hour'}</div>
-          <div className='zoo-buttons'>
+          <h1 className="zoo-welcome">Welcome to {newZoo.zooName}!</h1>
+          <div className="zoo-age">
+            Zoo age: {newZoo.zooAge} {newZoo.zooAge > 1 ? 'hours' : 'hour'}
+          </div>
+          <div className="zoo-buttons">
             <img
               onClick={handledTime}
-              aria-label='Make your zoo 1 hour older'
-              className='zoo-buttons-icon'
-              src='./timeIcon.png'
-              alt='Time Icon' />
+              aria-label="Make your zoo 1 hour older"
+              className="zoo-buttons-icon"
+              src="./timeIcon.png"
+              alt="Time Icon"
+            />
             <img
               onClick={handledFood}
-              aria-label='Give food to your animals'
-              className='zoo-buttons-icon'
-              src='./foodIcon.png'
-              alt='Food Icon' />
+              aria-label="Give food to your animals"
+              className="zoo-buttons-icon"
+              src="./foodIcon.png"
+              alt="Food Icon"
+            />
           </div>
 
-          <div className='zoo-animals-grid'>
-            <div className='zoo-animals-grid-cage cage-a'>
-              <Animals animals={newZoo.animals.filter((animal) => animal.type === 'giraffe')} />
+          <div className="zoo-animals-grid">
+            <div className="zoo-animals-grid-cage cage-a">
+              <Animals
+                animals={newZoo.animals.filter(
+                  (animal) => animal.type === 'giraffe',
+                )}
+              />
             </div>
-            <div className='zoo-animals-grid-cage cage-b'>
-              <Animals animals={newZoo.animals.filter((animal) => animal.type === 'elephant')} />
+            <div className="zoo-animals-grid-cage cage-b">
+              <Animals
+                animals={newZoo.animals.filter(
+                  (animal) => animal.type === 'elephant',
+                )}
+              />
             </div>
-            <div className='zoo-animals-grid-cage cage-c'>
-              <Animals animals={newZoo.animals.filter((animal) => animal.type === 'monkey')} />
+            <div className="zoo-animals-grid-cage cage-c">
+              <Animals
+                animals={newZoo.animals.filter(
+                  (animal) => animal.type === 'monkey',
+                )}
+              />
             </div>
           </div>
 
-          <div className='zoo-otherInfo'>
-            <div className='zoo-otherInfo-HealthInfo'>
-              <div className='zoo-otherInfo-HealthInfo-Container'>
-                <div className='zoo-otherInfo-HealthInfo-Container-AnimalType'>Giraffes' Health:</div>
-                <div className='zoo-otherInfo-HealthInfo-Container-animalsHealth'>
-                  <AnimalsHealthInfo animals={newZoo.animals.filter((animal) => animal.type === 'giraffe')} />
+          <div className="zoo-otherInfo">
+            <div className="zoo-otherInfo-HealthInfo">
+              <div className="zoo-otherInfo-HealthInfo-Container">
+                <div className="zoo-otherInfo-HealthInfo-Container-AnimalType">
+                  Giraffes&apos; Health:
+                </div>
+                <div className="zoo-otherInfo-HealthInfo-Container-animalsHealth">
+                  <AnimalsHealthInfo
+                    animals={newZoo.animals.filter(
+                      (animal) => animal.type === 'giraffe',
+                    )}
+                  />
                 </div>
               </div>
-              <div className='zoo-otherInfo-HealthInfo-Container'>
-                <div className='zoo-otherInfo-HealthInfo-Container-AnimalType'>Monkeys' Health:</div>
-                <div className='zoo-otherInfo-HealthInfo-Container-animalsHealth'>
-                  <AnimalsHealthInfo animals={newZoo.animals.filter((animal) => animal.type === 'monkey')} />
+              <div className="zoo-otherInfo-HealthInfo-Container">
+                <div className="zoo-otherInfo-HealthInfo-Container-AnimalType">
+                  Monkeys&apos; Health:
+                </div>
+                <div className="zoo-otherInfo-HealthInfo-Container-animalsHealth">
+                  <AnimalsHealthInfo
+                    animals={newZoo.animals.filter(
+                      (animal) => animal.type === 'monkey',
+                    )}
+                  />
                 </div>
               </div>
-              <div className='zoo-otherInfo-HealthInfo-Container'>
-                <div className='zoo-otherInfo-HealthInfo-Container-AnimalType'>Elephants' Health:</div>
-                <div className='zoo-otherInfo-HealthInfo-Container-animalsHealth'>
-                  <AnimalsHealthInfo animals={newZoo.animals.filter((animal) => animal.type === 'elephant')} />
+              <div className="zoo-otherInfo-HealthInfo-Container">
+                <div className="zoo-otherInfo-HealthInfo-Container-AnimalType">
+                  Elephants&apos; Health:
+                </div>
+                <div className="zoo-otherInfo-HealthInfo-Container-animalsHealth">
+                  <AnimalsHealthInfo
+                    animals={newZoo.animals.filter(
+                      (animal) => animal.type === 'elephant',
+                    )}
+                  />
                 </div>
               </div>
             </div>
-            <button className='zoo-otherInfo-button' type='submit' onClick={handledNewZoo}>New Zoo</button>
+            <button
+              className="zoo-otherInfo-button"
+              type="submit"
+              onClick={handledNewZoo}
+            >
+              New Zoo
+            </button>
           </div>
         </>
       )}
-    </section >
+    </section>
   );
-}
+};
 
 export default Zoo;
-
