@@ -11,22 +11,14 @@ const Zoo: React.FC = () => {
   const [animals, SetAnimals] = useState<IAnimal[]>([]);
   const [intervalId, SetIntervalId] = useState<NodeJS.Timeout | null>(null);
 
-  // use the location of the router to get the zoo name and animals
-
   const location = useLocation();
   const newZoo: INewZoo = location.state?.newZoo;
   const navigate = useNavigate();
 
-
-  // Update the client view when the page is renderise and start the interval for zoo.age to be updated every hour.
-
   useEffect(() => {
-    // if newZoo does not exist, the use will be directed to the main page to create a new Zoo.
-  if (!newZoo) {
-    navigate('/')
-  }
-      // if newZoo does exists
-
+    if (!newZoo) {
+      navigate('/')
+    }
     SetAnimals(newZoo?.animals);
     startInterval();
   }, []);
@@ -39,11 +31,6 @@ const Zoo: React.FC = () => {
     SetIntervalId(intervalId);
   }
 
-  /*Update animals' health when on hour is passed or when the handledTime icon is pressed.
-  This function (handledTime) clear and create a new intervalID if there was already one.
-  In addition, it should be set up the interval to 0, also decrease the health of animals, check if all animals are death and increase the zoo.age by 1
-  */
-
   const handledTime = () => {
     toast.success('Your Zoo is 1h older');
     if (intervalId) {
@@ -54,32 +41,48 @@ const Zoo: React.FC = () => {
     checkAllAnimalDead(animals);
     startInterval();
     newZoo.zooAge += 1;
-
   };
-  /*Update animals' health when the food icon is pressed.
-  */
+
   const handledFood = () => {
     toast.success('Your animals have been feed :)');
     const feedingAnimals = increaseAnimalsHealth(animals);
     SetAnimals(updateAnimalsCondition(feedingAnimals));
+    leavesRaining();
   }
-  /* I created this function just to trigger a message when all animals are death
-  */
+
   const checkAllAnimalDead = (animals: IAnimal[]) => {
     if (animals.every((animal) => animal.condition === 'death')) {
       toast.error('You kill all your animals... Your zoo is closed!')
     };
   }
 
-  /* Navegate to the main page (newZoo) to start the simulator again
-  */
+  
+  const leavesRaining = () => {
+    const numberOfLeaves = 30;
+    for (let i = 0; i < numberOfLeaves; i++) {
+      const leavesIcon = document.createElement('img');
+      leavesIcon.src = '/leaves.png';
+      leavesIcon.alt = 'Leaves rain';
+      leavesIcon.setAttribute('aria-label', 'Leaves rain');
+      leavesIcon.className = 'fallingLeaves';
+
+      leavesIcon.style.left = `${Math.random() * 100}vw`
+      leavesIcon.style.animationDelay = `${Math.random()}s`;
+
+      document.body.appendChild(leavesIcon);
+
+      setTimeout(() => {
+        document.body.removeChild(leavesIcon);
+      }, 5000)
+    }
+  }
+
   const handledNewZoo = () => {
     if (intervalId) {
       clearInterval(intervalId);
     }
     navigate('/')
   }
-
 
   return (
     <section id="zoo">
