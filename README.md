@@ -15,12 +15,11 @@ The user interface shows the current status of each animal and contain two butto
 
 The UI updates to reflect each change in state, and the current time at the zoo as it is displayed an informationn table at the end of the screen showing the health of the animals (green for healthy, yellow for ill and read for death)
 
-<div style="border: 2px solid black; text-align: center;">
-<video width= '320' height='240' controls>
-  <source src=""https://raw.githubusercontent.com/InesLozanoLopez/zooSimulator/public/zooSimulator.mp4" type="video/mp4">
-  Your browser does not support this HTML5 Video Element
-</video>
-</div>
+
+
+https://github.com/InesLozanoLopez/zooSimulator/assets/126467080/230ce610-51af-4e9e-8863-866423b72281
+
+
 
 
 ## Testing:
