@@ -9,7 +9,8 @@ export const decreaseHealth = (animals: IAnimal[]) => {
         animal.elephantPassCondition = animal.condition;
       }
       const animalHealth = animal.health;
-      const decrease = Math.floor(Math.random() * 21);
+      const decreasePercentage = Math.floor(Math.random() * 21);
+      const decrease = (animalHealth * decreasePercentage) / 100;
       animal.health = Number(animalHealth) - decrease;
     }
     return animal;
@@ -21,8 +22,8 @@ export const decreaseHealth = (animals: IAnimal[]) => {
 // Increase Health -> Feeding
 
 const increaseHealthNumber = () => {
-  const increase = Math.floor(Math.random() * 16) + 10;
-  return increase;
+  const increaseHealthPercentage = Math.floor(Math.random() * 16) + 10;
+  return increaseHealthPercentage;
 };
 
 export const increaseAnimalsHealth = (animals: IAnimal[]) => {
@@ -33,21 +34,21 @@ export const increaseAnimalsHealth = (animals: IAnimal[]) => {
   const updateAnimalsHealthFeeding = animals.map((animal) => {
     if (animal.condition !== 'death') {
       if (animal.type === 'giraffe') {
-        const newHealth = animal.health + increaseGiraffeHealth;
+        const newHealth = animal.health + (animal.health * increaseGiraffeHealth)/100;
         if (newHealth >= 100) {
           animal.health = 100;
         } else {
           animal.health = newHealth;
         }
       } else if (animal.type === 'monkey') {
-        const newHealth = animal.health + increaseMonkeyHealth;
+        const newHealth = animal.health + (animal.health * increaseMonkeyHealth)/100;
         if (newHealth >= 100) {
           animal.health = 100;
         } else {
           animal.health = newHealth;
         }
       } else if (animal.type === 'elephant') {
-        const newHealth = animal.health + increaseElephantHealth;
+        const newHealth = animal.health + (animal.health * increaseElephantHealth)/100;;
         if (newHealth >= 100) {
           animal.health = 100;
         } else {
