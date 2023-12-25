@@ -62,8 +62,13 @@ export const increaseAnimalsHealth = (animals: IAnimal[]) => {
 
 // Update animals' conditions
 
+let deathToastShown = false;
+let elephantIllToastShown = false;
+
 export const updateAnimalsCondition = (animals: IAnimal[]) => {
+  deathToastShown = true;
   let noNewDeath = true;
+  elephantIllToastShown = true;
 
   const updateAlive = animals
     .filter((animal) => animal.condition !== 'death')
@@ -90,7 +95,11 @@ export const updateAnimalsCondition = (animals: IAnimal[]) => {
             noNewDeath = false;
           } else if (animal.elephantPassCondition === 'healthy') {
             animal.condition = 'ill';
-            toast.warning('Becareful, one of your elephants cannot walk!');
+            if (elephantIllToastShown) {
+              toast.warning('Becareful, one of your elephants cannot walk!');
+              elephantIllToastShown = false;
+            }
+
           }
         } else {
           animal.condition = 'healthy';
@@ -98,8 +107,9 @@ export const updateAnimalsCondition = (animals: IAnimal[]) => {
       }
       return animal;
     });
-  if (!noNewDeath) {
+  if (!noNewDeath && deathToastShown) {
     toast.error('Oh no, one of your animals passed away');
+    deathToastShown = false;
   }
   return updateAlive;
 };

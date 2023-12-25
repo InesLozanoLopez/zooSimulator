@@ -55,7 +55,7 @@ const Zoo: React.FC = () => {
 
   const checkAllAnimalDead = (animals: IAnimal[]) => {
     if (animals.every((animal) => animal.condition === 'death')) {
-      toast.error('You kill all your animals... Your zoo is closed!');
+      toast.error('You killed all your animals... Your zoo is closed!');
     }
   };
 
