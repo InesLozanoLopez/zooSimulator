@@ -17,7 +17,7 @@ The UI updates to reflect each change in state, and the current time at the zoo 
 
 <div style="border: 2px solid black; text-align: center;">
 <video width= '320' height='240' controls>
-  <source src="./public/zooSimulator.mp4" type="video/mp4">
+  <source src=""https://raw.githubusercontent.com/InesLozanoLopez/zooSimulator/public/zooSimulator.mp4" type="video/mp4">
   Your browser does not support this HTML5 Video Element
 </video>
 </div>
