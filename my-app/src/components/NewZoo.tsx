@@ -61,7 +61,6 @@ function NewZoo() {
           onChange={formik.handleChange}
         ></input>
         <button type="submit" aria-label="Create new zoo">
-          {' '}
           New Zoo
         </button>
       </form>

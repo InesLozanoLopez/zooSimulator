@@ -16,7 +16,7 @@ const Animals: React.FC<AnimalsProps> = ({ animals }) => {
                     aria-label={`Icons of ${animals[i].type} alive`}
                     className={`animalIcons ${animals[i].condition === 'death' ? 'hiddenIcon' : ''}`}
                     key={i}
-                    src={`./${animals[i].type}.png`}
+                    src={`./${animals[i].type}.avif`}
                     alt={`icons of ${animals[i].type}s`}
                 />
             )

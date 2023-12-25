@@ -5,6 +5,7 @@ import 'cypress-wait-until';
 describe('Zoo Simulator create a Zoo', () => {
     beforeEach(() => {
         slowCypressDown(50);
+        cy.viewport(350, 550);
         cy.visit('http://localhost:3000/');
     });
 
@@ -33,6 +34,7 @@ describe('Zoo Simulator create a Zoo', () => {
 describe('Zoo Simulator e2e test', () => {
     beforeEach(() => {
         slowCypressDown(50);
+        cy.viewport(350, 550);
         cy.visit('http://localhost:3000/');
         cy.get('input[id="zooName"]').type('InesLand');
         cy.get('button[aria-label="Create new zoo"]').click();

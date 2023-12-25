@@ -63,7 +63,7 @@ const Zoo: React.FC = () => {
     const numberOfLeaves = 30;
     for (let i = 0; i < numberOfLeaves; i++) {
       const leavesIcon = document.createElement('img');
-      leavesIcon.src = '/leaves.png';
+      leavesIcon.src = '/leaves.avif';
       leavesIcon.alt = 'Leaves rain';
       leavesIcon.setAttribute('aria-label', 'Leaves rain');
       leavesIcon.className = 'fallingLeaves';
@@ -99,14 +99,14 @@ const Zoo: React.FC = () => {
               onClick={handledTime}
               aria-label="Make your zoo 1 hour older"
               className="zoo-buttons-icon"
-              src="./timeIcon.png"
+              src="./timeIcon.avif"
               alt="Time Icon"
             />
             <img
               onClick={handledFood}
               aria-label="Give food to your animals"
               className="zoo-buttons-icon"
-              src="./foodIcon.png"
+              src="./foodIcon.avif"
               alt="Food Icon"
             />
           </div>
@@ -178,6 +178,7 @@ const Zoo: React.FC = () => {
               className="zoo-otherInfo-button"
               type="submit"
               onClick={handledNewZoo}
+              aria-label="To start again"
             >
               New Zoo
             </button>
